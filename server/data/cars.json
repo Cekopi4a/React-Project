@@ -1,0 +1,26 @@
+{
+  "07f260f4-466c-4607-9a33": {
+    "_id": "07f260f4-466c-4607-9a33",
+    "brand": "BMW",
+    "model": "E36",
+    "price": "20.000",
+    "imageUrl": "https://autobild.bg/wp-content/uploads/2021/09/DSC1392-eb5f125dad04a8ae-720x405.jpg",
+    "description": "New BMW,2.5L engine with deisel.Ready for drive!"
+  },
+  "bdabf5e9-23be-40a1-9f14": {
+    "_id": "bdabf5e9-23be-40a1-9f14",
+    "brand": "Audi",
+    "model": "RS6",
+    "price": "40.000",
+    "imageUrl": "https://i.pinimg.com/originals/9c/e1/ae/9ce1aea0219a376c6d8a5b57a74bdb61.jpg",
+    "description": "New Audi,4.2L engine with deisel.Ready for drive!"
+  },
+  "7b3143e1-d6df-4e67-bd7e": {
+    "_id": "7b3143e1-d6df-4e67-bd7e",
+    "brand": "Porsche",
+    "model": "GT3-RS",
+    "price": "200.000",
+    "imageUrl": "https://images.pistonheads.com/nimg/45228/GT3MR_01.jpg",
+    "description": "New Porsche,4.2L boxer engine with gas.Ready for drive!"
+    }
+}

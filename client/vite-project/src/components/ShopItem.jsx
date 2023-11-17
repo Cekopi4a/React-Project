@@ -1,0 +1,34 @@
+import { Outlet, Link } from "react-router-dom";
+const ShopItem = ({
+    brand,
+    model,
+    price,
+    imageUrl,
+}) => {
+    return(
+        <div className="col mb-5">
+        <div className="card h-100">
+            <img className="card-img-top" src={imageUrl} alt="..." />
+            
+            <div className="card-body p-4">
+                <div className="text-center">
+                    
+                    <h5 className="fw-bolder">{brand} {model}</h5>
+                    
+                    ${price}
+                </div>
+            </div>
+           
+            <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
+            <div class="btn-group" role="group" aria-label="Basic outlined example">
+<button type="button" class="btn btn-outline-primary"><i class="bi bi-suit-heart-fill"></i></button>
+<Link to="/shop/item"><button type="button" class="btn btn-outline-primary"><i class="bi bi-eye-fill"></i></button></Link>
+<button type="button" class="btn btn-outline-primary"><i class="bi bi-cart-fill"></i></button>
+</div>
+            </div>
+        </div>
+    </div>
+    );
+};
+
+export default ShopItem;

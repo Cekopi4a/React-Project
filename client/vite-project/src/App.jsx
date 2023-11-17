@@ -7,7 +7,7 @@ import Login from './components/Login'
 import Footer from './components/Footer'
 import Admin from './components/Admin'
 import Item from './components/Item'
-import UserItem from './components/UserItem'
+import UsersItems from './components/UsersItems'
 
 
 
@@ -22,8 +22,8 @@ function App() {
        <Route path='/shop' element={<Shop />} />
        <Route path='/login' element={<Login />} />
        <Route path='/admin' element={<Admin />} />
-       <Route path='/item' element={<Item />} />
-       <Route path='/myItem' element={<UserItem />} />
+       <Route path='/shop/item' element={<Item />} />
+       <Route path='/myItem' element={<UsersItems/>} />
 </Routes>
 <Footer />
     </div>
