@@ -1,5 +1,5 @@
 {
-  "07f260f4-466c-4607-9a33-f7273b24f1b4": {
+  "": {
     "_id": "07f260f4-466c-4607-9a33-f7273b24f1b4",
     "firstName": "Asen",
     "lastName": "Asenov",
@@ -7,7 +7,7 @@
     "phoneNumber": "0899999999",
     "createdAt": "2023-11-01T07:22:00.358Z",
     "updatedAt": "2023-11-01T07:22:00.358Z",
-    "imageUrl": "https://cdn3.vectorstock.com/i/1000x1000/54/17/person-gray-photo-placeholder-man-vector-24005417.jpg",
+    "imageUrl": "https://static.wikia.nocookie.net/starwars/images/d/d6/Yoda_SWSB.png/revision/latest?cb=20150206140125",
     "address": {
       "country": "България",
       "city": "Перник",
