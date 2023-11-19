@@ -28,9 +28,10 @@ function Shop() {
 <div className="container px-4 px-lg-5 mt-5">
                 <div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     
-                {items.map(item =>(
+                {items.map((item,index)=>(
 				<ShopItem
 				key={item._id}
+                _id={item._id}
 				brand={item.brand}
 				model={item.model}
 				price={item.price}

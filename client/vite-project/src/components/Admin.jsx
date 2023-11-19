@@ -13,6 +13,12 @@ useEffect(() => {
    .then(result => setUsers(result));
 },[]);
 
+const onUserCreate = () =>{
+	console.log("USer Create!");
+
+	//До тук съм!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+}
+
     return(
   <>
   <div className="container-xl">
@@ -76,14 +82,23 @@ useEffect(() => {
 <div id="addEmployeeModal" className="modal fade">
 	<div className="modal-dialog">
 		<div className="modal-content">
-			<form>
+			<form onSubmit={onUserCreate}>
 				<div className="modal-header">						
 					<h4 className="modal-title">Add Employee</h4>
 					<button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
-				<div className="modal-body">					
+				<div className="modal-body">	
+				<label>Picture</label>
+					<div class="input-group mb-3">
+  <label class="input-group-text" for="inputGroupFile01">Upload</label>
+  <input type="file" class="form-control" id="inputGroupFile01"/>
+                   </div>					
 					<div className="form-group">
-						<label>Name</label>
+						<label>First Name</label>
+						<input type="text" className="form-control" required/>
+					</div>
+					<div className="form-group">
+						<label>Last Name</label>
 						<input type="text" className="form-control" required/>
 					</div>
 					<div className="form-group">

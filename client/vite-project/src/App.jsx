@@ -6,8 +6,9 @@ import Home from './components/Home'
 import Login from './components/Login'
 import Footer from './components/Footer'
 import Admin from './components/Admin'
-import Item from './components/Item'
 import UsersItems from './components/UsersItems'
+import ShopItemDetails from './components/ShopItemDetails'
+import ShopItem from './components/ShopItem'
 
 
 
@@ -19,10 +20,11 @@ function App() {
 <Navbar />
     <Routes>
        <Route path='/' element={<Home />} />
-       <Route path='/shop' element={<Shop />} />
        <Route path='/login' element={<Login />} />
        <Route path='/admin' element={<Admin />} />
-       <Route path='/shop/item' element={<Item />} />
+       <Route path='/shop' element={<Shop />} />
+       <Route path='/shop/item' element={<ShopItem />} />
+       <Route path="/shop/item/:id" element={<ShopItemDetails />} />
        <Route path='/myItem' element={<UsersItems/>} />
 </Routes>
 <Footer />
