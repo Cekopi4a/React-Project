@@ -1,5 +1,7 @@
 import { useEffect,useState } from "react";
 import { useParams, } from "react-router-dom"; 
+import style from './ShopItemDetails.module.css'
+import * as commentService from '../service/commentService'
 
 const ShopItemDetails = () =>{
    const { id } = useParams();
@@ -10,6 +12,19 @@ const ShopItemDetails = () =>{
     .then(res => res.json())
     .then(setItem);
    },[id]);
+
+   const addCommentHandler = async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(e.currentTarget);
+
+      const newComment = await commentService.create(
+        id,
+        formData.get('username'),
+        formData.get('comment') 
+        );
+        console.log(newComment);
+   };
 
     return(
 <>
@@ -36,6 +51,22 @@ const ShopItemDetails = () =>{
     </div>
 </div>
 </section>
+<div class="container text-center">
+<div class="row">
+<div class="col">
+    <h1>Comments:</h1>
+    <p>Ceko208:</p><p>Very good!</p>
+    </div>
+    <div class="col">
+    <label className={style.label}>Add new comment:</label>
+    <form onSubmit={addCommentHandler}>
+    <input type="text" name="username" placeholder="Username"/>
+        <textarea className={style.textarea} name="comment" placeholder="Comment...."></textarea>
+        <input className="" type="submit" value="Add Comment"/>
+    </form>
+    </div>
+  </div>
+</div>
 
 <section className="py-5 bg-light">
     <h2 className="fw-bolder mb-4">Related products</h2>
