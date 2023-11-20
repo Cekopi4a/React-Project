@@ -23,7 +23,8 @@ const ShopItemDetails = () =>{
             <div className="fs-5 mb-5">
                 <span className="text-decoration">${item.price}</span>
             </div>
-            <p className="lead">{item.description}</p>
+            <p className="lead"><p>Description:</p>
+                {item.description}</p>
             <div className="d-flex">
                 {/*<input className="form-control text-center me-3" id="inputQuantity" type="num" style="max-width: 3rem" />*/}
                 <button className="btn btn-outline-dark flex-shrink-0" type="button">

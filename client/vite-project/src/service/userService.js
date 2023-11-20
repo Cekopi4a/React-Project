@@ -10,7 +10,7 @@ export const getAll = async () =>{
 };
 
 
-export const create = async (data) => {
+{/*export const create = async (data) => {
     const body = {
         imageUrl: data.imageUrl,
         firstName: data.firstName,
@@ -29,4 +29,17 @@ const response = await fetch(baseUrl,{
     })
 
     const result = await response.json();
+};*/}
+export const create = async (itemData) =>{
+    const response = await fetch(`${baseUrl}`,{
+        method: 'POST',
+        headers:{
+            "content-type": "application/json"
+        },
+        body: JSON.stringify(itemData)
+    });
+
+    const result = await response.json();
+
+    return result;
 };

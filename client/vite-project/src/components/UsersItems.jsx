@@ -1,10 +1,14 @@
 import style from './UserListItem.module.css'
 import UserItem from './UserItem';
 import * as itemService from "../service/itemService";
+import { create } from '../service/itemService';
 import { useEffect,useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const UsersItems = () => {
+	const navigate=useNavigate();
 	const [items, setItems] = useState([]);
+
 
 console.log(items);
 
@@ -12,6 +16,20 @@ useEffect(() => {
    itemService.getAll()
    .then(result => setItems(result));
 },[]);
+
+
+const createItemHandler = async (e) => {
+    e.preventDefault();
+
+	const itemData = Object.fromEntries(new FormData(e.currentTarget))
+
+	console.log(itemData);
+
+	const result = await create(itemData);
+
+	
+   navigate('/myItem');
+}
 
     return(
   <>
@@ -75,35 +93,36 @@ useEffect(() => {
 <div id="addEmployeeModal" className="modal fade">
 	<div className="modal-dialog">
 		<div className="modal-content">
-			<form>
+			<form id="create" onSubmit={createItemHandler}>
 				<div className="modal-header">						
 					<h4 className="modal-title">Add Employee</h4>
 					<button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div className="modal-body">					
 					<div className="form-group">
-						<label>Name</label>
-						<input type="text" className="form-control" required/>
+						<label>Brand</label>
+						<input type="text" name="brand" className="form-control" required/>
+					</div>
+					<div className="form-group">
+						<label>Model</label>
+						<input type="text" name="model" className="form-control" required/>
 					</div>
 					<label>Price</label>
 					<div class="input-group mb-3">
   <span class="input-group-text">$</span>
   <span class="input-group-text">0.00</span>
-  <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)"/>
+  <input type="text" name="price" class="form-control" aria-label="Dollar amount (with dot and two decimal places)"/>
 </div>
 					<div className="form-group">
 						<label>Description</label>
-						<textarea className="form-control" required></textarea>
+						<textarea className="form-control" name="description" required></textarea>
 					</div>
 					<label>Picture</label>
-					<div class="input-group mb-3">
-  <label class="input-group-text" for="inputGroupFile01">Upload</label>
-  <input type="file" class="form-control" id="inputGroupFile01"/>
-</div>			
+					<input type="text" name="imageUrl" className="form-control" required/>
 				</div>
 				<div className="modal-footer">
 					<input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel"/>
-					<input type="submit" className="btn btn-success" value="Add"/>
+					<input type="submit" className="btn btn-success" value="Add" />
 				</div>
 			</form>
 		</div>

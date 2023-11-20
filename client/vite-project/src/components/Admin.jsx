@@ -2,6 +2,7 @@ import style from './Admin.module.css'
 import * as userService from "../service/userService";
 import { useEffect,useState } from 'react';
 import AdminUser from './AdminUsers';
+import { create } from '../service/userService';
 
 const Admin = () => {
 const [users, setUsers] = useState([]);
@@ -13,8 +14,15 @@ useEffect(() => {
    .then(result => setUsers(result));
 },[]);
 
-const onUserCreate = () =>{
-	console.log("USer Create!");
+const onUserCreate = async (e) =>{
+	
+		e.preventDefault();
+	
+		const itemData = Object.fromEntries(new FormData(e.currentTarget))
+	
+		console.log(itemData);
+	
+		const result = await create(itemData);
 
 	//До тук съм!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 }
@@ -89,29 +97,26 @@ const onUserCreate = () =>{
 				</div>
 				<div className="modal-body">	
 				<label>Picture</label>
-					<div class="input-group mb-3">
-  <label class="input-group-text" for="inputGroupFile01">Upload</label>
-  <input type="file" class="form-control" id="inputGroupFile01"/>
-                   </div>					
+				<input type="text" name="imageUrl" className="form-control" required/>	
 					<div className="form-group">
 						<label>First Name</label>
-						<input type="text" className="form-control" required/>
+						<input type="text" name="firstName" className="form-control" required/>
 					</div>
 					<div className="form-group">
 						<label>Last Name</label>
-						<input type="text" className="form-control" required/>
+						<input type="text" name="lastName" className="form-control" required/>
 					</div>
 					<div className="form-group">
 						<label>Email</label>
-						<input type="email" className="form-control" required/>
+						<input type="email" name="email" className="form-control" required/>
 					</div>
 					<div className="form-group">
 						<label>Address</label>
-						<textarea className="form-control" required></textarea>
+						<textarea className="form-control" name="address" required></textarea>
 					</div>
 					<div className="form-group">
 						<label>Phone</label>
-						<input type="text" className="form-control" required/>
+						<input type="text" name="phoneNumber" className="form-control" required/>
 					</div>					
 				</div>
 				<div className="modal-footer">
