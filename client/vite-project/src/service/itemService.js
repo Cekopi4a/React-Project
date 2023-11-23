@@ -23,3 +23,19 @@ export const create = async (itemData) =>{
 
     return result;
 }
+
+export const deleteItem = async (id) => {
+    fetch(`${baseUrl}/${id}`, {
+      method: "DELETE",
+      headers:{
+        "content-type": "application/json"
+    },
+    body: JSON.stringify(itemData)
+});
+
+   const result = await response.json();
+
+    return result;
+  
+}
+      

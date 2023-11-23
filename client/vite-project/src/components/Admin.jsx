@@ -24,6 +24,7 @@ const onUserCreate = async (e) =>{
 	
 		const result = await create(itemData);
 
+		setUsers(users => [...users,result])
 	//До тук съм!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 }
 

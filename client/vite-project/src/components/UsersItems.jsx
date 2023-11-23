@@ -6,7 +6,7 @@ import { useEffect,useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const UsersItems = () => {
-	const navigate=useNavigate();
+	const navigate= useNavigate();
 	const [items, setItems] = useState([]);
 
 
@@ -23,12 +23,11 @@ const createItemHandler = async (e) => {
 
 	const itemData = Object.fromEntries(new FormData(e.currentTarget))
 
-	console.log(itemData);
-
 	const result = await create(itemData);
-
+	navigate('/shop');
 	
-   navigate('/myItem');
+	setItems(items => [...items,result])
+     
 }
 
     return(

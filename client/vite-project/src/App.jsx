@@ -9,6 +9,7 @@ import Admin from './components/Admin'
 import UsersItems from './components/UsersItems'
 import ShopItemDetails from './components/ShopItemDetails'
 import ShopItem from './components/ShopItem'
+import Register from './components/Register'
 
 
 
@@ -21,6 +22,7 @@ function App() {
     <Routes>
        <Route path='/' element={<Home />} />
        <Route path='/login' element={<Login />} />
+       <Route path='/register' element={<Register />} />
        <Route path='/admin' element={<Admin />} />
        <Route path='/shop' element={<Shop />} />
        <Route path='/shop/item' element={<ShopItem />} />

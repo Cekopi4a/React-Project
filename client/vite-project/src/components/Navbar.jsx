@@ -19,7 +19,8 @@ const Navbar = () => {
                         <li><Link className="dropdown-item" to="/myItem">My Item</Link></li>
                     </ul>
                 </li>
-                <li className="nav-item"><a className="nav-link" href="/login">Login</a></li>
+                <li className="nav-item"><Link className="nav-link" to="/login">Login</Link></li>
+                <li className="nav-item"><Link className="nav-link" to="/register">Register</Link></li>
             </ul>
             <form className="d-flex">
                 <button className="btn btn-outline-dark" type="submit">
