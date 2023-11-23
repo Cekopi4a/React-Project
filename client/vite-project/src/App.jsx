@@ -16,12 +16,18 @@ import Register from './components/Register'
 
 
 function App() {
+const[auth,setAuth] = useState({});
+
+const loginSubmitHandler = (values) => {
+     console.log(values);
+}
+
   return (
     <div>
 <Navbar />
     <Routes>
        <Route path='/' element={<Home />} />
-       <Route path='/login' element={<Login />} />
+       <Route path='/login' element={<Login loginSubmitHandler={loginSubmitHandler} />} />
        <Route path='/register' element={<Register />} />
        <Route path='/admin' element={<Admin />} />
        <Route path='/shop' element={<Shop />} />
