@@ -22,13 +22,13 @@ const Navbar = () => {
                 <li className="nav-item"><Link className="nav-link" to="/login">Login</Link></li>
                 <li className="nav-item"><Link className="nav-link" to="/register">Register</Link></li>
             </ul>
-            <form className="d-flex">
+            <div className="d-flex">
                 <button className="btn btn-outline-dark" type="submit">
                     <i className="bi-cart-fill me-1"></i>
                     Cart
                     <span className="badge bg-dark text-white ms-1 rounded-pill">0</span>
                 </button>
-            </form>
+            </div>
         </div>
     </div>
 </nav>

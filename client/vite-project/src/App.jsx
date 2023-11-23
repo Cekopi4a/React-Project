@@ -26,7 +26,7 @@ function App() {
        <Route path='/admin' element={<Admin />} />
        <Route path='/shop' element={<Shop />} />
        <Route path='/shop/item' element={<ShopItem />} />
-       <Route path="/shop/item/:id" element={<ShopItemDetails />} />
+       <Route path="/shop/item/:carid" element={<ShopItemDetails />} />
        <Route path='/myItem' element={<UsersItems/>} />
 </Routes>
 <Footer />

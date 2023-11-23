@@ -4,14 +4,18 @@ import style from './ShopItemDetails.module.css'
 import * as commentService from '../service/commentService'
 
 const ShopItemDetails = () =>{
-   const { id } = useParams();
+   const { carid } = useParams();
    const [item,setItem] = useState({});
+   const [comments,setComments] = useState([]);
    
    useEffect(() => {
-    fetch(`http://localhost:3030/jsonstore/cars/${id}`)
+    fetch(`http://localhost:3030/jsonstore/cars/${carid}`)
     .then(res => res.json())
     .then(setItem);
-   },[id]);
+
+    commentService.getAll(carid)
+    .then(setComments);
+   },[carid]);
 
    const addCommentHandler = async (e) => {
       e.preventDefault();
@@ -19,10 +23,12 @@ const ShopItemDetails = () =>{
       const formData = new FormData(e.currentTarget);
 
       const newComment = await commentService.create(
-        id,
+        carid,
         formData.get('username'),
         formData.get('comment') 
         );
+
+        setComments(state => [...state,newComment]);
         console.log(newComment);
    };
 
@@ -51,11 +57,23 @@ const ShopItemDetails = () =>{
     </div>
 </div>
 </section>
+
+
+
 <div class="container text-center">
 <div class="row">
 <div class="col">
     <h1>Comments:</h1>
-    <p>Ceko208:</p><p>Very good!</p>
+    <ul>
+        {comments.map(({_id,username,text}) => (
+        <li key={_id}>
+            <p>{username}:{text}</p>
+        </li>
+        ))}
+    </ul>
+    {comments.length === 0 && (
+        <p>No comments.</p>
+    )}
     </div>
     <div class="col">
     <label className={style.label}>Add new comment:</label>
@@ -67,6 +85,7 @@ const ShopItemDetails = () =>{
     </div>
   </div>
 </div>
+
 
 <section className="py-5 bg-light">
     <h2 className="fw-bolder mb-4">Related products</h2>
