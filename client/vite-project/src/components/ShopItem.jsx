@@ -1,6 +1,7 @@
 import { Outlet, Link } from "react-router-dom";
 const ShopItem = ({
-    carid,
+    id,
+    _id,
     brand,
     model,
     price,
@@ -24,8 +25,8 @@ const ShopItem = ({
             <div className="container text-center">
              <div className="btn-group" role="group" aria-label="Basic outlined example">
                 <button type="button" className="btn btn-outline-primary"><i className="bi bi-suit-heart-fill"></i></button>
-                <Link to={`/shop/item/${carid}`}><button className="btn btn-outline-primary"><i className="bi bi-eye-fill"></i></button></Link>
-                <button type="button" className="btn btn-outline-primary"><i className="bi bi-cart-fill"></i></button>
+                <Link to={`/shop/item/${id}`}><button className="btn btn-outline-primary"><i className="bi bi-eye-fill"></i></button></Link>
+                <Link to={`/cart/${id}`}><button type="button" className="btn btn-outline-primary"><i className="bi bi-cart-fill"></i></button></Link>
                </div>
                </div>
             </div>

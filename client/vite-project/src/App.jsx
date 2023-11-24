@@ -10,6 +10,7 @@ import UsersItems from './components/UsersItems'
 import ShopItemDetails from './components/ShopItemDetails'
 import ShopItem from './components/ShopItem'
 import Register from './components/Register'
+import Cart from './components/Cart'
 
 
 
@@ -32,8 +33,11 @@ const loginSubmitHandler = (values) => {
        <Route path='/admin' element={<Admin />} />
        <Route path='/shop' element={<Shop />} />
        <Route path='/shop/item' element={<ShopItem />} />
-       <Route path="/shop/item/:carid" element={<ShopItemDetails />} />
+       <Route path="/shop/item/:id" element={<ShopItemDetails />} />
        <Route path='/myItem' element={<UsersItems/>} />
+       <Route path='/cart' element={<Cart/>} />
+       <Route path='/cart/:id' element={<Cart/>} />
+       
 </Routes>
 <Footer />
     </div>

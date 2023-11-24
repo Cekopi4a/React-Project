@@ -31,7 +31,7 @@ function Shop() {
                 {items.map((item)=>(
 				<ShopItem
 				key={item._id}
-                carid={item.carid}
+                id={item._id}
 				brand={item.brand}
 				model={item.model}
 				price={item.price}

@@ -24,9 +24,9 @@ const createItemHandler = async (e) => {
 	const itemData = Object.fromEntries(new FormData(e.currentTarget))
 
 	const result = await create(itemData);
-	navigate('/shop');
 	
 	setItems(items => [...items,result])
+	navigate('/shop');
      
 }
 
@@ -65,7 +65,7 @@ const createItemHandler = async (e) => {
 				</thead>
 				{items.map(item =>(
 				<UserItem
-				key={item._id}
+				key={item.carid}
 				brand={item.brand}
 				model={item.model}
 				price={item.price}

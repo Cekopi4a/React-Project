@@ -11,8 +11,8 @@ const Home = () => {
       <div className="carousel-item active">
         <img src="./assets/img/car11.jpg" className="d-block w-100" alt="..."/>
         <div className="carousel-caption d-none d-md-block">
-          <h5>First slide label</h5>
-          <p>Some representative placeholder content for the first slide.</p>
+          <h3>The Best Car Shop</h3>
+          <p>The best car you ever see!</p>
         </div>
       </div>
       <div className="carousel-item">
