@@ -1,5 +1,9 @@
-import {Routes,Route} from 'react-router-dom'
+import {Routes,Route, useNavigate} from 'react-router-dom'
 import { useState } from 'react'
+
+import * as authService from './service/authService'
+import authContext from './context/authContext'
+
 import Navbar from './components/Navbar'
 import Shop from './components/Shop'
 import Home from './components/Home'
@@ -11,24 +15,31 @@ import ShopItemDetails from './components/ShopItemDetails'
 import ShopItem from './components/ShopItem'
 import Register from './components/Register'
 import Cart from './components/Cart'
-
-
+import NoFound from './components/NotFound'
+import Path from './path'
 
 
 
 function App() {
+const navigate = useNavigate();
 const[auth,setAuth] = useState({});
 
-const loginSubmitHandler = (values) => {
-     console.log(values);
+const loginSubmitHandler = async (values) => {
+   const result = await authService.login(values.email, values.password);
+
+   setAuth(result);
+   
+   navigate(Path.Home)
 }
 
   return (
+    <authContext.Provider value={{loginSubmitHandler}}>
     <div>
 <Navbar />
     <Routes>
+      <Route path='*' element={<NoFound />} />
        <Route path='/' element={<Home />} />
-       <Route path='/login' element={<Login loginSubmitHandler={loginSubmitHandler} />} />
+       <Route path='/login' element={<Login />} />
        <Route path='/register' element={<Register />} />
        <Route path='/admin' element={<Admin />} />
        <Route path='/shop' element={<Shop />} />
@@ -40,7 +51,9 @@ const loginSubmitHandler = (values) => {
        
 </Routes>
 <Footer />
+
     </div>
+</authContext.Provider>
   )
 }
 
