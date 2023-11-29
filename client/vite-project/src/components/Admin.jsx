@@ -28,6 +28,15 @@ const onUserCreate = async (e) =>{
 	//До тук съм!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 }
 
+const deleteUser = (id) => {
+    fetch(`http://localhost:3030/jsonstore/user/${id}`, {
+      method: "DELETE",
+    })
+      .then(response => response.json())
+     
+	  setUsers(state => state.filter(x => x._id !==id))
+  }
+
     return(
   <>
   <div className="container-xl">
@@ -36,11 +45,11 @@ const onUserCreate = async (e) =>{
 			<div className="table-title">
 				<div className="row">
 					<div className="col-sm-6">
-						<h2>Manage <b>Employees</b></h2>
+						<h2>Manage <b>Users</b></h2>
 					</div>
 					<div className="col-sm-6">
-						<a href="#addEmployeeModal" className="btn btn-success" data-toggle="modal"><i className="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
-						<a href="#deleteEmployeeModal" className="btn btn-danger" data-toggle="modal"><i className="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+						<a href="#addEmployeeModal" className="btn btn-success" data-toggle="modal"><i className="material-icons">&#xE147;</i> <span>Add New User</span></a>
+						<a href="" onClick={deleteUser} className="btn btn-danger" data-toggle="modal"><i className="material-icons">&#xE15C;</i> <span>Delete</span></a>						
 					</div>
 				</div>
 			</div>
@@ -63,6 +72,7 @@ const onUserCreate = async (e) =>{
 				</thead>
 				{users.map(user =>(
 				<AdminUser 
+				id={user._id}
 				key={user._id}
 				firstName={user.firstName}
 				lastName={user.lastName}
@@ -70,6 +80,7 @@ const onUserCreate = async (e) =>{
 				address={user.address}
 				phoneNumber={user.phoneNumber}
 				imageUrl={user.imageUrl}
+				deleteUser={deleteUser}
 				/>))}
 			</table>
 			<div className="clearfix">
@@ -167,7 +178,7 @@ const onUserCreate = async (e) =>{
 <div id="deleteEmployeeModal" className="modal fade">
 	<div className="modal-dialog">
 		<div className="modal-content">
-			<form>
+			<form onSubmit={deleteUser}>
 				<div className="modal-header">						
 					<h4 className="modal-title">Delete Employee</h4>
 					<button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>

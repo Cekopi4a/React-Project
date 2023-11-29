@@ -1,11 +1,16 @@
 const AdminUser = ({
+	id,
     firstName,
     lastName,
     email,
     address,
     phoneNumber,
     imageUrl,
+	deleteUser,
 }) =>{
+	const onDeleteUser = () =>{
+		deleteUser(id)
+	}
    return(
     <tbody>
 					<tr>
@@ -15,7 +20,7 @@ const AdminUser = ({
 								<label htmlFor="checkbox1"></label>
 							</span>
 						</td>
-                        <td><img src={imageUrl} style={{width: "80px"}}/></td>
+                        <td><img src={imageUrl} style={{width: "80px",height:"40%"}}/></td>
 						<td>{firstName} {lastName}</td>
 						<td>{email}</td>
 						<td>{}</td>
@@ -23,7 +28,7 @@ const AdminUser = ({
 						<td>
 							<a href="#editEmployeeModal" className="edit" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 							<a href="#editEmployeeModal" className="edit" data-toggle="modal"><i className="bi bi-info-square"></i></a>
-							<a href="#deleteEmployeeModal" className="delete" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+							<a href="" onClick={onDeleteUser} className="delete" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 
 						</td>
 					</tr>

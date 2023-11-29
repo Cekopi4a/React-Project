@@ -10,7 +10,7 @@ const ShopItem = ({
     return(
      <div className="col mb-5">
         <div className="card h-100">
-            <img className="card-img-top" src={imageUrl} alt="..." />
+            <img className="card-img-top" src={imageUrl}  style={{height: "40%"}} alt="..." />
             
             <div className="card-body p-4">
                 <div className="text-center">

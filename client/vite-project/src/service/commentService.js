@@ -11,7 +11,7 @@ const baseUrl = 'http://localhost:3030/jsonstore/comments';
 }
 */}
 
-export const getAll = async (carid) =>{
+export const getAll = async (id) =>{
     const response = await fetch(baseUrl);
     const result = await response.json();
 
@@ -21,7 +21,7 @@ export const getAll = async (carid) =>{
     return Comment;
 };
 
-export const create = async (carid,username,text) => {
+export const create = async (id,username,text) => {
     const response = await fetch(baseUrl,{
         method: 'POST',
         headers:{

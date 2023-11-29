@@ -75,8 +75,8 @@ const ShopItemDetails = () =>{
 <div class="col">
     <h1>Comments:</h1>
     <ul>
-        {comments.map(({_id,username,text}) => (
-        <li key={_id}>
+        {comments.map(({id,username,text}) => (
+        <li key={id}>
             <p>{username}:{text}</p>
         </li>
         ))}
@@ -119,7 +119,7 @@ const ShopItemDetails = () =>{
              <div className="btn-group" role="group" aria-label="Basic outlined example">
                 <button type="button" className="btn btn-outline-primary"><i className="bi bi-suit-heart-fill"></i></button>
                 <Link to={`/shop/item/${id}`}><button className="btn btn-outline-primary"><i className="bi bi-eye-fill"></i></button></Link>
-                <button type="button" className="btn btn-outline-primary"><i className="bi bi-cart-fill"></i></button>
+                <Link to={`/cart/${id}`}><button type="button" className="btn btn-outline-primary"><i className="bi bi-cart-fill"></i></button></Link>
                </div>
                </div>
             </div>

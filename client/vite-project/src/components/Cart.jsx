@@ -1,6 +1,8 @@
 import { useParams, } from "react-router-dom"; 
 
-const Cart = () => {
+const Cart = ({
+    
+}) => {
     return(
         <>
         <h1>Cart Page</h1>

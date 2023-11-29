@@ -24,13 +24,13 @@ export const create = async (itemData) =>{
     return result;
 }
 
-export const deleteItem = async (id) => {
-    fetch(`${baseUrl}/${id}`, {
+{/*export const deleteItem = async (id) => {
+    fetch(`${baseUrl}/${_id}`, {
       method: "DELETE",
       headers:{
         "content-type": "application/json"
     },
-    body: JSON.stringify(itemData)
+    body: JSON.stringify(_id)
 });
 
    const result = await response.json();
@@ -38,4 +38,5 @@ export const deleteItem = async (id) => {
     return result;
   
 }
-      
+*/}
+ 

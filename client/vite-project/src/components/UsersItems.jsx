@@ -5,10 +5,10 @@ import { create } from '../service/itemService';
 import { useEffect,useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+
 const UsersItems = () => {
 	const navigate= useNavigate();
 	const [items, setItems] = useState([]);
-
 
 console.log(items);
 
@@ -26,9 +26,18 @@ const createItemHandler = async (e) => {
 	const result = await create(itemData);
 	
 	setItems(items => [...items,result])
-	navigate('/shop');
-     
+
 }
+
+const deleteItem = (id) => {
+    fetch(`http://localhost:3030/jsonstore/cars/${id}`, {
+      method: "DELETE",
+    })
+      .then(response => response.json())
+     
+	  setItems(state => state.filter(x => x._id !==id))
+  }
+
 
     return(
   <>
@@ -41,8 +50,8 @@ const createItemHandler = async (e) => {
 						<h2>Manage <b>Item</b></h2>
 					</div>
 					<div className="col-sm-6">
-						<a href="#addEmployeeModal" className="btn btn-success" data-toggle="modal"><i className="material-icons">&#xE147;</i> <span>Add New Item</span></a>
-						<a href="#deleteEmployeeModal" className="btn btn-danger" data-toggle="modal"><i className="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+						<a href="#addItemModal" className="btn btn-success" data-toggle="modal"><i className="material-icons">&#xE147;</i> <span>Add New Item</span></a>
+						<a href="" onClick={deleteItem} className="btn btn-danger" data-toggle="modal"><i className="material-icons">&#xE15C;</i> <span>Delete</span></a>						
 					</div>
 				</div>
 			</div>
@@ -65,7 +74,9 @@ const createItemHandler = async (e) => {
 				</thead>
 				{items.map(item =>(
 				<UserItem
-				key={item.carid}
+				deleteItem={deleteItem}
+				id={item._id}
+				key={item._id}
 				brand={item.brand}
 				model={item.model}
 				price={item.price}
@@ -89,15 +100,15 @@ const createItemHandler = async (e) => {
 	</div>        
 </div>
 
-<div id="addEmployeeModal" className="modal fade">
+<div id="addItemModal" className="modal fade">
 	<div className="modal-dialog">
 		<div className="modal-content">
-			<form id="create" onSubmit={createItemHandler}>
+			<form onSubmit={createItemHandler}>
 				<div className="modal-header">						
 					<h4 className="modal-title">Add Employee</h4>
 					<button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
-				<div className="modal-body">					
+				<div className="modal-body">	
 					<div className="form-group">
 						<label>Brand</label>
 						<input type="text" name="brand" className="form-control" required/>
@@ -106,27 +117,30 @@ const createItemHandler = async (e) => {
 						<label>Model</label>
 						<input type="text" name="model" className="form-control" required/>
 					</div>
+					<div className="form-group">
 					<label>Price</label>
 					<div class="input-group mb-3">
   <span class="input-group-text">$</span>
   <span class="input-group-text">0.00</span>
-  <input type="text" name="price" class="form-control" aria-label="Dollar amount (with dot and two decimal places)"/>
+  <input type="text" name='price' class="form-control" aria-label="Dollar amount (with dot and two decimal places)" />
 </div>
+					</div>
 					<div className="form-group">
 						<label>Description</label>
 						<textarea className="form-control" name="description" required></textarea>
 					</div>
 					<label>Picture</label>
-					<input type="text" name="imageUrl" className="form-control" required/>
+				<input type="text" name="imageUrl" className="form-control" required/>						
 				</div>
 				<div className="modal-footer">
 					<input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel"/>
-					<input type="submit" className="btn btn-success" value="Add" />
+					<input type="submit" className="btn btn-success" value="Add"/>
 				</div>
 			</form>
 		</div>
 	</div>
 </div>
+
 
 <div id="editEmployeeModal" className="modal fade">
 	<div className="modal-dialog">
@@ -169,7 +183,7 @@ const createItemHandler = async (e) => {
 <div id="deleteEmployeeModal" className="modal fade">
 	<div className="modal-dialog">
 		<div className="modal-content">
-			<form>
+			<form >
 				<div className="modal-header">						
 					<h4 className="modal-title">Delete Employee</h4>
 					<button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
