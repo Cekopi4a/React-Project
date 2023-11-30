@@ -42,7 +42,7 @@ export default function Login (){
       onChange={onChange} 
       value={values[LoginFormKeys.Password]} required />
         
-    <button className={styles.login}  type="submit" onSubmit={onSubmit}>Login</button>
+    <button className={styles.login}  type="submit">Login</button>
   </div>
 </form>
 </div>

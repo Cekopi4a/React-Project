@@ -32,13 +32,25 @@ const loginSubmitHandler = async (values) => {
    navigate(Path.Home)
 }
 
+const registerSubmitHandler = async (values) => {
+  console.log(values);
+}
+
+const values = {
+  loginSubmitHandler,
+  registerSubmitHandler,
+  username: auth.username,
+  email: auth.email,
+  isAuthenticated: !!auth.username,
+}
+
   return (
-    <authContext.Provider value={{loginSubmitHandler}}>
+    <authContext.Provider value={{loginSubmitHandler, ...auth}}>
     <div>
 <Navbar />
     <Routes>
       <Route path='*' element={<NoFound />} />
-       <Route path='/' element={<Home />} />
+       <Route path={Path.Home} element={<Home />} />
        <Route path='/login' element={<Login />} />
        <Route path='/register' element={<Register />} />
        <Route path='/admin' element={<Admin />} />
