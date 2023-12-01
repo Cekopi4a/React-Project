@@ -3,6 +3,7 @@ import { useState } from 'react'
 
 import * as authService from './service/authService'
 import authContext from './context/authContext'
+import Path from './path'
 
 import Navbar from './components/Navbar'
 import Shop from './components/Shop'
@@ -16,7 +17,7 @@ import ShopItem from './components/ShopItem'
 import Register from './components/Register'
 import Cart from './components/Cart'
 import NoFound from './components/NotFound'
-import Path from './path'
+import Logout from './components/Logout'
 
 
 
@@ -24,35 +25,53 @@ function App() {
 const navigate = useNavigate();
 const[auth,setAuth] = useState({});
 
+{/*() => {
+  localStorage.removeItem('accessToken');
+});*/}
+
 const loginSubmitHandler = async (values) => {
-   const result = await authService.login(values.email, values.password);
+   const result = await authService.login(values.email, values.password,values.username);
 
    setAuth(result);
-   
-   navigate(Path.Home)
+   localStorage.setItem('accessToken',result.accessToken);
+   navigate(Path.Home);
 }
 
 const registerSubmitHandler = async (values) => {
-  console.log(values);
+ const result = await authService.register(values.email,values.password);
+
+ setAuth(result);
+ localStorage.setItem('accessToken',result.accessToken);
+   navigate(Path.Home);
+}
+
+const logoutHandler = () => {
+  setAuth({});
+  localStorage.removeItem('accessToken');
 }
 
 const values = {
+  logoutHandler,
   loginSubmitHandler,
   registerSubmitHandler,
   username: auth.username,
   email: auth.email,
-  isAuthenticated: !!auth.username,
+  firstName:auth.firstName,
+  lastName:auth.lastName,
+  isAuthenticated: !!auth.accessToken,
 }
 
   return (
-    <authContext.Provider value={{loginSubmitHandler, ...auth}}>
+    
     <div>
+      <authContext.Provider value={values}>
 <Navbar />
     <Routes>
       <Route path='*' element={<NoFound />} />
        <Route path={Path.Home} element={<Home />} />
        <Route path='/login' element={<Login />} />
        <Route path='/register' element={<Register />} />
+       <Route path={Path.Logout} element={<Logout />} />
        <Route path='/admin' element={<Admin />} />
        <Route path='/shop' element={<Shop />} />
        <Route path='/shop/item' element={<ShopItem />} />
@@ -63,9 +82,8 @@ const values = {
        
 </Routes>
 <Footer />
-
-    </div>
 </authContext.Provider>
+    </div>
   )
 }
 

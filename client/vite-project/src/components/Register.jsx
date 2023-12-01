@@ -14,7 +14,7 @@ const RegisterFormKeys = {
 };
 
 export default function Register () {
-    const {registerSubmitHandler} = useContext(authContext);
+    const { registerSubmitHandler } = useContext(authContext);
 	const {values, onChange, onSubmit } = useForm(registerSubmitHandler, {
 		[RegisterFormKeys.Email]: '',
 		[RegisterFormKeys.Password]: '',
@@ -29,9 +29,9 @@ export default function Register () {
 
     return(
 		<>
-		<div class="container-md">
+		<div className="container-md">
 			<form onSubmit={onSubmit}>
-			<div class="container text-center">					
+			<div className="container text-center">					
 					<h1 className="modal-title">Register</h1>
 				</div>
 				<div className="form-group">
@@ -50,7 +50,7 @@ export default function Register () {
 					</div>
 					<div className="form-group">
 						<label>Confirm Password</label>
-						<input type="text" name="confirmPassword" className="form-control"
+						<input type="text" name="confirm-password" className="form-control"
 						 onChange={onChange} 
 						 values={values[RegisterFormKeys.ConfirmPassword]}
 						 required/>
@@ -91,7 +91,7 @@ export default function Register () {
 						 required/>
 					</div>					
 				<div className="modal-footer">
-					<input type="submit"  class="btn btn-primary" value="Register"/>
+					<button type="submit" name="btnsubmit"  className="btn btn-primary" value="Register">Register</button>
 				</div>
 			</form>
 			</div>

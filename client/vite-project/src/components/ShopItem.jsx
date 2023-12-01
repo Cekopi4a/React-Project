@@ -1,4 +1,6 @@
 import { Outlet, Link } from "react-router-dom";
+import { useContext } from 'react';
+import authContext from '../context/authContext';
 const ShopItem = ({
     id,
     _id,
@@ -7,6 +9,9 @@ const ShopItem = ({
     price,
     imageUrl,
 }) => {
+    const {
+        isAuthenticated,
+       } = useContext(authContext);
     return(
      <div className="col mb-5">
         <div className="card h-100">
@@ -20,7 +25,18 @@ const ShopItem = ({
                     ${price}
                 </div>
             </div>
-           
+            {!isAuthenticated && (
+                 <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                 <div className="container text-center">
+                 <Link to='/login'>
+                 <button type="button" class="btn btn-outline-primary">
+                 Login to see details.
+                    </button>
+                    </Link>
+                    </div>
+                    </div>
+            )}
+            {isAuthenticated && (
             <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
             <div className="container text-center">
              <div className="btn-group" role="group" aria-label="Basic outlined example">
@@ -29,7 +45,7 @@ const ShopItem = ({
                 <Link to={`/cart/${id}`}><button type="button" className="btn btn-outline-primary"><i className="bi bi-cart-fill"></i></button></Link>
                </div>
                </div>
-            </div>
+            </div>)}
         </div>
     </div>
     );

@@ -28,16 +28,21 @@ const Navbar = () => {
                     </ul>
                     
                 </li>
-               
+                {!isAuthenticated && (
+                    <>
                 <li className="nav-item"><Link className="nav-link" to="/login">Login</Link></li>
-                <li className="nav-item"><Link className="nav-link" to="/register">Register</Link></li>
+            <li className="nav-item"><Link className="nav-link" to="/register">Register</Link></li>
+            </>
+                )}
                 {isAuthenticated && (
                     <div id='admin'> 
                 <li className="nav-item"><Link className="nav-link" to="/admin">Admin</Link></li>
+                <div className="nav-item"><Link className="nav-link" to="/logout">Logout</Link></div>
                 </div>)}
+
             </ul>
             <div className="d-flex">
-            <span class="navbar-text">
+            <span className="navbar-text">
         {username}
       </span>
       <p> </p>
