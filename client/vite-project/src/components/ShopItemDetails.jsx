@@ -8,10 +8,10 @@ import authContext from "../context/authContext";
 
 const ShopItemDetails = () =>{
    const { id } = useParams();
-   const [item,setItem] = useState({});
+   const [item,setItem] = useState([]);
    const [comments,setComments] = useState([]);
    const [items, setItems] = useState([]);
-   const { email, userId } = useContext(authContext);
+   const { email, username } = useContext(authContext);
 
    
    useEffect(() => {
@@ -38,7 +38,7 @@ const ShopItemDetails = () =>{
         formData.get('comment') 
         );
 
-        setComments(state => [...state,{...newComment,author : { email }}]);
+        setComments(state => [...state,{...newComment,author : { username }}]);
         console.log(newComment);
    };
 
@@ -76,9 +76,9 @@ const ShopItemDetails = () =>{
 <div className="col">
     <h1>Comments:</h1>
     <ul>
-        {comments.map(({_id,owner: { email },text}) => (
+        {comments.map(({_id,owner: { username },text}) => (
         <li key={_id}>
-            <div>{email}:{text}</div>
+            <div>{username}:{text}</div>
         </li>
         ))}
     </ul>

@@ -6,6 +6,7 @@ const Navbar = () => {
    const {
     isAuthenticated,
     username,
+    role,
    } = useContext(authContext);
 
   return(
@@ -26,19 +27,20 @@ const Navbar = () => {
                         <li><Link className="dropdown-item" to="/myItem">My Item</Link></li>
                         </div>)}
                     </ul>
-                    
                 </li>
+                 
+                <li className="nav-item"><Link className="nav-link" to="/admin">Admin</Link></li>
+                
                 {!isAuthenticated && (
                     <>
                 <li className="nav-item"><Link className="nav-link" to="/login">Login</Link></li>
             <li className="nav-item"><Link className="nav-link" to="/register">Register</Link></li>
             </>
                 )}
+
                 {isAuthenticated && (
-                    <div id='admin'> 
-                <li className="nav-item"><Link className="nav-link" to="/admin">Admin</Link></li>
                 <li className="nav-item"><Link className="nav-link" to="/logout">Logout</Link></li>
-                </div>)}
+                )}
 
             </ul>
             <div className="d-flex">

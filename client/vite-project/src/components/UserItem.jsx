@@ -4,6 +4,7 @@ import { useContext } from 'react';
 
 const UserItem = ({
 	id,
+	ownerId,
 	deleteItem,
     brand,
     model,
@@ -11,17 +12,22 @@ const UserItem = ({
     imageUrl,
     description,
 }) => {
+	const {
+		userId,
+		isAuthenticated
+	   } = useContext(authContext);
 
 	const onDeleteItem = () =>{
 		deleteItem(id)
 	}
 
-	const {
-		isAuthenticated
-	   } = useContext(authContext);
-	const token = localStorage.getItem('accessToken');
+	console.log(ownerId);
+	console.log(userId);
+	console.log(userId);
+	
     return(
          <>
+		 {userId === ownerId &&(
           <tbody>
 		 
 					<tr>
@@ -46,6 +52,7 @@ const UserItem = ({
 						</td>
 					</tr>
 				</tbody>
+		 )}
          </>
     );
 };

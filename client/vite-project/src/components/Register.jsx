@@ -89,7 +89,7 @@ export default function Register () {
 						 onChange={onChange} 
 						 values={values[RegisterFormKeys.PhoneNumber]}
 						 required/>
-					</div>					
+					</div>				
 				<div className="modal-footer">
 					<button type="submit" name="btnsubmit"  className="btn btn-primary" value="Register">Register</button>
 				</div>

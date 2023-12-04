@@ -28,7 +28,6 @@ export const create = async (itemData) =>{
 
     return result;
 }
-
 {/*export const deleteItem = async (id) => {
     fetch(`${baseUrl}/${_id}`, {
       method: "DELETE",

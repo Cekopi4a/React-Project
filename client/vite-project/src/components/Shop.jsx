@@ -6,8 +6,6 @@ import ShopItem from "./ShopItem";
 function Shop() {
     const [items, setItems] = useState([]);
 
- 
-    
     useEffect(() => {
        itemService.getAll()
        .then(result => setItems(result));

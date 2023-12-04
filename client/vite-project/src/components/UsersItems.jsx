@@ -14,8 +14,9 @@ const UsersItems = () => {
 	const [items, setItems] = useState([]);
 	const { userId } = useContext(authContext);
    
-
+	
 console.log(items);
+
 
 useEffect(() => {
    itemService.getAll()
@@ -43,7 +44,6 @@ const deleteItem = (id) => {
 	  setItems(state => state.filter(x => x._id !==id))
   }
 
-  
 
     return(
   <>
@@ -61,7 +61,6 @@ const deleteItem = (id) => {
 					</div>
 				</div>
 			</div>
-			
 			<table className="table table-striped table-hover">
 				<thead>
 					<tr>
@@ -81,15 +80,16 @@ const deleteItem = (id) => {
 				</thead>
 				{items.map(item =>(
 				<UserItem
-				deleteItem={deleteItem}
 				key={item._id}
+				deleteItem={deleteItem}
+				ownerId={item._ownerId}
 				brand={item.brand}
 				model={item.model}
 				price={item.price}
 				description={item.description}
 				imageUrl={item.imageUrl}
 				/>))}
-			</table>
+		   </table>
 			<div className="clearfix">
 				<div className="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
 				<ul className="pagination">
