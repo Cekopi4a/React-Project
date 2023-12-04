@@ -1,12 +1,16 @@
-const baseUrl = 'http://localhost:3030/jsonstore/cars';
+
+const baseUrl = 'http://localhost:3030/data/cars';
+
+const token = localStorage.getItem('accessToken');
 
 export const getAll = async () =>{
     const response = await fetch(baseUrl);
+  
     const result = await response.json();
 
     const data = Object.values(result);
 
-    console.log(result);
+    
     return data;
 };
 
@@ -14,7 +18,8 @@ export const create = async (itemData) =>{
     const response = await fetch(`${baseUrl}`,{
         method: 'POST',
         headers:{
-            "content-type": "application/json"
+            "content-type": "application/json",
+            'X-Authorization': token
         },
         body: JSON.stringify(itemData)
     });

@@ -37,7 +37,7 @@ const Navbar = () => {
                 {isAuthenticated && (
                     <div id='admin'> 
                 <li className="nav-item"><Link className="nav-link" to="/admin">Admin</Link></li>
-                <div className="nav-item"><Link className="nav-link" to="/logout">Logout</Link></div>
+                <li className="nav-item"><Link className="nav-link" to="/logout">Logout</Link></li>
                 </div>)}
 
             </ul>

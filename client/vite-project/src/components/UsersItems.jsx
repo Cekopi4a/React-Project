@@ -6,9 +6,11 @@ import { useEffect,useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
+
 const UsersItems = () => {
 	const navigate= useNavigate();
 	const [items, setItems] = useState([]);
+   
 
 console.log(items);
 
@@ -30,7 +32,7 @@ const createItemHandler = async (e) => {
 }
 
 const deleteItem = (id) => {
-    fetch(`http://localhost:3030/jsonstore/cars/${id}`, {
+    fetch(`http://localhost:3030/data/cars/${id}`, {
       method: "DELETE",
     })
       .then(response => response.json())
@@ -74,8 +76,8 @@ const deleteItem = (id) => {
 				</thead>
 				{items.map(item =>(
 				<UserItem
+				_ownerId={item._ownerId}
 				deleteItem={deleteItem}
-				id={item._id}
 				key={item._id}
 				brand={item.brand}
 				model={item.model}
@@ -119,10 +121,10 @@ const deleteItem = (id) => {
 					</div>
 					<div className="form-group">
 					<label>Price</label>
-					<div class="input-group mb-3">
-  <span class="input-group-text">$</span>
-  <span class="input-group-text">0.00</span>
-  <input type="text" name='price' class="form-control" aria-label="Dollar amount (with dot and two decimal places)" />
+					<div className="input-group mb-3">
+  <span className="input-group-text">$</span>
+  <span className="input-group-text">0.00</span>
+  <input type="text" name='price' className="form-control" aria-label="Dollar amount (with dot and two decimal places)" />
 </div>
 					</div>
 					<div className="form-group">
@@ -156,19 +158,19 @@ const deleteItem = (id) => {
 						<input type="text" className="form-control" required/>
 					</div>
 					<label>Price</label>
-					<div class="input-group mb-3">
-  <span class="input-group-text">$</span>
-  <span class="input-group-text">0.00</span>
-  <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)"/>
+					<div className="input-group mb-3">
+  <span className="input-group-text">$</span>
+  <span className="input-group-text">0.00</span>
+  <input type="text" className="form-control" aria-label="Dollar amount (with dot and two decimal places)"/>
 </div>
 					<div className="form-group">
 						<label>Description</label>
 						<textarea className="form-control" required></textarea>
 					</div>
 					<label>Picture</label>
-					<div class="input-group mb-3">
-  <label class="input-group-text" for="inputGroupFile01">Upload</label>
-  <input type="file" class="form-control" id="inputGroupFile01"/>
+					<div className="input-group mb-3">
+  <label className="input-group-text" htmlFor="inputGroupFile01">Upload</label>
+  <input type="file" className="form-control" id="inputGroupFile01"/>
 </div>			
 				</div>
 				<div className="modal-footer">

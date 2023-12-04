@@ -23,11 +23,12 @@ import Logout from './components/Logout'
 
 function App() {
 const navigate = useNavigate();
-const[auth,setAuth] = useState({});
-
-{/*() => {
+const[auth,setAuth] = useState(() => {
   localStorage.removeItem('accessToken');
-});*/}
+
+  return{};
+});
+
 
 const loginSubmitHandler = async (values) => {
    const result = await authService.login(values.email, values.password,values.username);
@@ -54,6 +55,7 @@ const values = {
   logoutHandler,
   loginSubmitHandler,
   registerSubmitHandler,
+  userId: auth.userId,
   username: auth.username,
   email: auth.email,
   firstName:auth.firstName,

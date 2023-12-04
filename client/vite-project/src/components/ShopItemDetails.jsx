@@ -4,6 +4,7 @@ import { useParams, } from "react-router-dom";
 import style from './ShopItemDetails.module.css'
 import * as commentService from '../service/commentService'
 import * as itemService from '../service/itemService'
+import authContext from "../context/authContext";
 
 const ShopItemDetails = () =>{
    const { id } = useParams();
@@ -18,7 +19,7 @@ const ShopItemDetails = () =>{
    },[]);
    
    useEffect(() => {
-    fetch(`http://localhost:3030/jsonstore/cars/${id}`)
+    fetch(`http://localhost:3030/data/cars/${id}`)
     .then(res => res.json())
     .then(setItem);
 
@@ -32,8 +33,7 @@ const ShopItemDetails = () =>{
       const formData = new FormData(e.currentTarget);
 
       const newComment = await commentService.create(
-        carid,
-        formData.get('username'),
+        id,
         formData.get('comment') 
         );
 
@@ -70,25 +70,24 @@ const ShopItemDetails = () =>{
 
 
 
-<div class="container text-center">
-<div class="row">
-<div class="col">
+<div className="container text-center">
+<div className="row">
+<div className="col">
     <h1>Comments:</h1>
     <ul>
-        {comments.map(({id,username,text}) => (
-        <li key={id}>
+        {comments.map(({_id,username,text}) => (
+        <li key={_id}>
             <p>{username}:{text}</p>
         </li>
         ))}
     </ul>
     {comments.length === 0 && (
-        <p>No comments.</p>
+        <div>No comments.</div>
     )}
     </div>
-    <div class="col">
+    <div className="col">
     <label className={style.label}>Add new comment:</label>
     <form onSubmit={addCommentHandler}>
-    <input type="text" name="username" placeholder="Username"/>
         <textarea className={style.textarea} name="comment" placeholder="Comment...."></textarea>
         <input className="" type="submit" value="Add Comment"/>
     </form>

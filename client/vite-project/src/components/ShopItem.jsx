@@ -3,7 +3,6 @@ import { useContext } from 'react';
 import authContext from '../context/authContext';
 const ShopItem = ({
     id,
-    _id,
     brand,
     model,
     price,
@@ -29,7 +28,7 @@ const ShopItem = ({
                  <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
                  <div className="container text-center">
                  <Link to='/login'>
-                 <button type="button" class="btn btn-outline-primary">
+                 <button type="button" className="btn btn-outline-primary">
                  Login to see details.
                     </button>
                     </Link>

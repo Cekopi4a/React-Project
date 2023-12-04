@@ -1,4 +1,6 @@
 import * as itemService from '../service/itemService'
+import authContext from '../context/authContext';
+import { useContext } from 'react';
 
 const UserItem = ({
 	id,
@@ -8,14 +10,22 @@ const UserItem = ({
     price,
     imageUrl,
     description,
+	_ownerId,
 }) => {
+	const { userId } = useContext(authContext);
 
 	const onDeleteItem = () =>{
 		deleteItem(id)
 	}
+
+	const {
+		isAuthenticated
+	   } = useContext(authContext);
+	const token = localStorage.getItem('accessToken');
     return(
          <>
           <tbody>
+		  {userId === _ownerId  &&
 					<tr>
 						<td>
 							<span className="custom-checkbox">
@@ -37,8 +47,8 @@ const UserItem = ({
 							<a href="" onClick={onDeleteItem} className="delete" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 						</td>
 					</tr>
+}
 				</tbody>
-
          </>
     );
 };

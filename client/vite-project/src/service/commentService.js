@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:3030/jsonstore/comments';
+const baseUrl = 'http://localhost:3030/data/comments';
 
 {/*export const create = async ( _id, username, text) => {
     const newComment = await request.post(baseUrl,{
@@ -21,14 +21,14 @@ export const getAll = async (id) =>{
     return Comment;
 };
 
-export const create = async (id,username,text) => {
+export const create = async (comid,text) => {
     const response = await fetch(baseUrl,{
         method: 'POST',
         headers:{
             "content-type": "application/json",
         },
         
-        body:JSON.stringify({carid,username,text}),
+        body:JSON.stringify({comid,text}),
     });
 
     const result = await response.json();

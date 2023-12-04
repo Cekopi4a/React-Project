@@ -1,4 +1,4 @@
-const baseUrl ='http://localhost:3030/users';
+{/*const baseUrl ='http://localhost:3030/users';
 
 export const login = async (email,password,username) => {
     const response = await fetch(`${baseUrl}/login`,{
@@ -27,11 +27,11 @@ export const logout = () => {
         body: JSON.stringify()
     });
 
+    const result =  response.json();
+
     if (response.status === 204){
         return{};
     } 
-
-    const result =  response.json();
 
     if(!response.ok) {
         throw result;
@@ -54,3 +54,23 @@ export const register = async (email,password) => {
 
     return result;
 }
+*/}
+import * as request from '../request/request';
+
+const baseUrl = 'http://localhost:3030/users';
+
+export const login = async (email, password) => {
+    const result = await request.post(`${baseUrl}/login`, {
+        email,
+        password,
+    });
+
+    return result;
+};
+
+export const register = (email, password) => request.post(`${baseUrl}/register`, {
+    email,
+    password,
+});
+
+export const logout = () => request.get(`${baseUrl}/logout`);
