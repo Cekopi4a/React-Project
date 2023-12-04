@@ -2,14 +2,17 @@ import style from './UserListItem.module.css'
 import UserItem from './UserItem';
 import * as itemService from "../service/itemService";
 import { create } from '../service/itemService';
-import { useEffect,useState } from 'react';
+import { useEffect,useState,useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import authContext from '../context/authContext'
+
 
 
 
 const UsersItems = () => {
 	const navigate= useNavigate();
 	const [items, setItems] = useState([]);
+	const { userId } = useContext(authContext);
    
 
 console.log(items);
@@ -40,6 +43,7 @@ const deleteItem = (id) => {
 	  setItems(state => state.filter(x => x._id !==id))
   }
 
+  
 
     return(
   <>
@@ -57,6 +61,7 @@ const deleteItem = (id) => {
 					</div>
 				</div>
 			</div>
+			
 			<table className="table table-striped table-hover">
 				<thead>
 					<tr>
@@ -76,7 +81,6 @@ const deleteItem = (id) => {
 				</thead>
 				{items.map(item =>(
 				<UserItem
-				_ownerId={item._ownerId}
 				deleteItem={deleteItem}
 				key={item._id}
 				brand={item.brand}

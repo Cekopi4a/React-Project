@@ -1,4 +1,4 @@
-import { useEffect,useState } from "react";
+import { useEffect,useState,useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
 import { useParams, } from "react-router-dom"; 
 import style from './ShopItemDetails.module.css'
@@ -11,6 +11,7 @@ const ShopItemDetails = () =>{
    const [item,setItem] = useState({});
    const [comments,setComments] = useState([]);
    const [items, setItems] = useState([]);
+   const { email, userId } = useContext(authContext);
 
    
    useEffect(() => {
@@ -37,7 +38,7 @@ const ShopItemDetails = () =>{
         formData.get('comment') 
         );
 
-        setComments(state => [...state,newComment]);
+        setComments(state => [...state,{...newComment,author : { email }}]);
         console.log(newComment);
    };
 
@@ -75,9 +76,9 @@ const ShopItemDetails = () =>{
 <div className="col">
     <h1>Comments:</h1>
     <ul>
-        {comments.map(({_id,username,text}) => (
+        {comments.map(({_id,owner: { email },text}) => (
         <li key={_id}>
-            <p>{username}:{text}</p>
+            <div>{email}:{text}</div>
         </li>
         ))}
     </ul>
