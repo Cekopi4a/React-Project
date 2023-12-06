@@ -16,6 +16,7 @@ import Register from './components/Register'
 import Cart from './components/Cart'
 import NoFound from './components/NotFound'
 import Logout from './components/Logout'
+import EditItem from './components/EditItem'
 
 
 
@@ -37,6 +38,7 @@ function App() {
        <Route path='/shop/item' element={<ShopItem />} />
        <Route path="/shop/item/:id" element={<ShopItemDetails />} />
        <Route path='/myItem' element={<UsersItems/>} />
+       <Route path='/edit/:id' element={<EditItem/>} />
        <Route path='/cart' element={<Cart/>} />
        <Route path='/cart/:id' element={<Cart/>} />
        

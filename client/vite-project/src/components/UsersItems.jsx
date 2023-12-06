@@ -3,7 +3,7 @@ import UserItem from './UserItem';
 import * as itemService from "../service/itemService";
 import { create } from '../service/itemService';
 import { useEffect,useState,useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import authContext from '../context/authContext'
 
 
@@ -12,9 +12,8 @@ import authContext from '../context/authContext'
 const UsersItems = () => {
 	const navigate= useNavigate();
 	const [items, setItems] = useState([]);
-	const { userId } = useContext(authContext);
+	const {id} = useParams();
    
-	
 console.log(items);
 
 
@@ -35,13 +34,15 @@ const createItemHandler = async (e) => {
 
 }
 
-const deleteItem = (id) => {
-    fetch(`http://localhost:3030/data/cars/${id}`, {
-      method: "DELETE",
-    })
-      .then(response => response.json())
-     
-	  setItems(state => state.filter(x => x._id !==id))
+const deleteItem = async (id) => {
+  const hasconfirm = confirm(`Are you sure you want to delete ${id.brand}`);
+
+	if(hasconfirm){
+		await itemService.deleteItem(id)
+	
+	    navigate('/shop');
+	}
+	  
   }
 
 
@@ -66,7 +67,7 @@ const deleteItem = (id) => {
 					<tr>
 						<th>
 							<span className="custom-checkbox">
-								<input type="checkbox" id="selectAll" />
+								<input type="checkbox" id="selectAll" value={1}/>
 								<label htmlFor="selectAll"></label>
 							</span>
 						</th>
@@ -80,8 +81,9 @@ const deleteItem = (id) => {
 				</thead>
 				{items.map(item =>(
 				<UserItem
+				id={item._id}
 				key={item._id}
-				deleteItem={deleteItem}
+				ondelete={deleteItem}
 				ownerId={item._ownerId}
 				brand={item.brand}
 				model={item.model}
@@ -147,44 +149,6 @@ const deleteItem = (id) => {
 	</div>
 </div>
 
-
-<div id="editEmployeeModal" className="modal fade">
-	<div className="modal-dialog">
-		<div className="modal-content">
-		<form>
-				<div className="modal-header">						
-					<h4 className="modal-title">Add Employee</h4>
-					<button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				</div>
-				<div className="modal-body">					
-					<div className="form-group">
-						<label>Name</label>
-						<input type="text" className="form-control" required/>
-					</div>
-					<label>Price</label>
-					<div className="input-group mb-3">
-  <span className="input-group-text">$</span>
-  <span className="input-group-text">0.00</span>
-  <input type="text" className="form-control" aria-label="Dollar amount (with dot and two decimal places)"/>
-</div>
-					<div className="form-group">
-						<label>Description</label>
-						<textarea className="form-control" required></textarea>
-					</div>
-					<label>Picture</label>
-					<div className="input-group mb-3">
-  <label className="input-group-text" htmlFor="inputGroupFile01">Upload</label>
-  <input type="file" className="form-control" id="inputGroupFile01"/>
-</div>			
-				</div>
-				<div className="modal-footer">
-					<input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel"/>
-					<input type="submit" className="btn btn-success" value="Add"/>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
 
 <div id="deleteEmployeeModal" className="modal fade">
 	<div className="modal-dialog">

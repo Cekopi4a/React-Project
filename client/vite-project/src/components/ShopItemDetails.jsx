@@ -20,10 +20,10 @@ const ShopItemDetails = () =>{
    },[]);
    
    useEffect(() => {
-    fetch(`http://localhost:3030/data/cars/${id}`)
-    .then(res => res.json())
-    .then(setItem);
-
+    itemService.getOne(id)
+    .then(result => { setItem(result)
+    });
+    
     commentService.getAll(id)
     .then(setComments);
    },[id]);

@@ -28,7 +28,7 @@ function Shop() {
                     
                 {items.map((item)=>(
 				<ShopItem
-				key={item._id}
+                
                 id={item._id}
 				brand={item.brand}
 				model={item.model}

@@ -6,7 +6,6 @@ const Navbar = () => {
    const {
     isAuthenticated,
     username,
-    role,
    } = useContext(authContext);
 
   return(
@@ -23,31 +22,29 @@ const Navbar = () => {
                     <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><Link className="dropdown-item" to="/shop">All Products</Link></li>
                         {isAuthenticated && (
-                            <div id='user'> <li><hr className="dropdown-divider" /></li>
+                            <div> <li><hr className="dropdown-divider" /></li>
                         <li><Link className="dropdown-item" to="/myItem">My Item</Link></li>
                         </div>)}
                     </ul>
                 </li>
-                 
                 <li className="nav-item"><Link className="nav-link" to="/admin">Admin</Link></li>
-                
-                {!isAuthenticated && (
+            </ul>
+
+
+            <div className="d-flex">
+            {!isAuthenticated && (
                     <>
-                <li className="nav-item"><Link className="nav-link" to="/login">Login</Link></li>
-            <li className="nav-item"><Link className="nav-link" to="/register">Register</Link></li>
+                <span className="nav-item"><Link className="nav-link" to="/login">Login</Link></span>
+            <span className="nav-item"><Link className="nav-link" to="/register">Register</Link></span>
             </>
                 )}
 
-                {isAuthenticated && (
-                <li className="nav-item"><Link className="nav-link" to="/logout">Logout</Link></li>
-                )}
-
-            </ul>
-            <div className="d-flex">
             <span className="navbar-text">
         {username}
       </span>
-      <p> </p>
+      
+      {isAuthenticated && (
+        <>
                 <Link to="/cart">
                 <button className="btn btn-outline-dark" type="submit">
                     <i className="bi-cart-fill me-1"></i>
@@ -55,6 +52,9 @@ const Navbar = () => {
                     <span className="badge bg-dark text-white ms-1 rounded-pill">0</span>
                 </button>
                 </Link>
+                 <div className="nav-item"><Link className="nav-link" to="/logout">Logout</Link></div>
+                 </>
+      )}
             </div>
         </div>
     </div>

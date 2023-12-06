@@ -1,11 +1,12 @@
 import * as itemService from '../service/itemService'
 import authContext from '../context/authContext';
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 
 const UserItem = ({
 	id,
 	ownerId,
-	deleteItem,
+	ondelete,
     brand,
     model,
     price,
@@ -18,12 +19,8 @@ const UserItem = ({
 	   } = useContext(authContext);
 
 	const onDeleteItem = () =>{
-		deleteItem(id)
+		ondelete(id)
 	}
-
-	console.log(ownerId);
-	console.log(userId);
-	console.log(userId);
 	
     return(
          <>
@@ -46,7 +43,7 @@ const UserItem = ({
                      
 
 						<td>
-							<a href="#editEmployeeModal" className="edit" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+						<Link to={`/edit/${id}`} className="edit" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></Link>
 				            
 							<a href="" onClick={onDeleteItem} className="delete" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 						</td>

@@ -5,13 +5,14 @@ import Path from '../path'
 
 import usePersistedState from '../hooks/usePersistedState';
 import * as authService from '../service/authService'
-const authContext = createContext();
+const AuthContext = createContext();
 
 
-authContext.displayName = 'authContext';
+AuthContext.displayName = 'authContext';
 
 export const AuthProvider = ({
     children,
+    value
 }) => {
 
 
@@ -23,7 +24,7 @@ const loginSubmitHandler = async (values) => {
    const result = await authService.login(values.email, values.password,values.username);
 
    setAuth(result);
-   localStorage.setItem('accessToken',result.accessToken);
+   localStorage.setItem('accessToken', result.accessToken);
    navigate(Path.Home);
 }
 
@@ -53,10 +54,10 @@ const values = {
 }
 
     return(
-        <authContext.Provider value={values}>
+        <AuthContext.Provider value={values}>
             {children}
-        </authContext.Provider>
+        </AuthContext.Provider>
     )
 }
 
-export default authContext;
+export default AuthContext;
