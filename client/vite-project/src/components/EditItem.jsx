@@ -75,7 +75,7 @@ return (
 				<input type="text" name="imageUrl" className="form-control"  value={item.imageUrl} onChange={onChange} required/>						
 				</div>
 				<div className="modal-footer">
-					<input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel"/>
+					<input type="button" onClick={() => (navigate('/myItem'))} className="btn btn-default" data-dismiss="modal" value="Cancel"/>
 					<input type="submit" className="btn btn-success" value="Edit"/>
 				</div>
 			</form>

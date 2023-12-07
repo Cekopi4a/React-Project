@@ -1,4 +1,5 @@
 const baseUrl = 'http://localhost:3030/data/cars';
+const cartUrl = 'http://localhost:3030/data/cart';
 
 const token = localStorage.getItem('accessToken');
 
@@ -43,6 +44,21 @@ export const edit = async (id,itemData) =>{
             "content-type": "application/json",
             'X-Authorization': token
         },
+        body: JSON.stringify(itemData,id)
+    });
+
+    const result = await response.json();
+
+    return result;
+}
+
+export const addCart = async (itemData) =>{
+    const response = await fetch(`${cartUrl}`,{
+        method: 'POST',
+        headers:{
+            "content-type": "application/json",
+            'X-Authorization': token
+        },
         body: JSON.stringify(itemData)
     });
 
@@ -51,7 +67,16 @@ export const edit = async (id,itemData) =>{
     return result;
 }
 
+export const getAllCart = async () =>{
+    const response = await fetch(`${cartUrl}`);
+  
+    const result = await response.json();
 
+    const data = Object.values(result);
+
+    
+    return data;
+};
 
 export const deleteItem = async (id) => {
     const response = await fetch(`${baseUrl}/${id}`, {

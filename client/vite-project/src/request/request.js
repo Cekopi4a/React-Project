@@ -10,6 +10,13 @@ const buildOptions = (data) => {
 
     const token = localStorage.getItem('accessToken');
 
+    if(email == "admin@abv.bg",token){
+        options.headers = {
+            ...options.headers,
+            'X-Admin': token
+    }
+}
+
     if (token) {
         options.headers = {
             ...options.headers,

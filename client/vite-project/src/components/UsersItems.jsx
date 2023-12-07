@@ -6,9 +6,6 @@ import { useEffect,useState,useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import authContext from '../context/authContext'
 
-
-
-
 const UsersItems = () => {
 	const navigate= useNavigate();
 	const [items, setItems] = useState([]);
@@ -30,7 +27,7 @@ const createItemHandler = async (e) => {
 
 	const result = await create(itemData);
 	
-	setItems(items => [...items,result])
+	setItems(items => [...items,result]);
 
 }
 
@@ -142,7 +139,7 @@ const deleteItem = async (id) => {
 				</div>
 				<div className="modal-footer">
 					<input type="button" className="btn btn-default" data-dismiss="modal" value="Cancel"/>
-					<input type="submit" className="btn btn-success" value="Add"/>
+					<input type="submit" className="btn btn-success" value="Add" />
 				</div>
 			</form>
 		</div>

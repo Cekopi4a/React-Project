@@ -1,17 +1,20 @@
 import { useParams,Link } from "react-router-dom"; 
+import { useContext } from "react";
 import { useState,useEffect } from "react";
+import CartContext from "../context/cartContext";
 import * as itemService from '../service/itemService'
 
 const Cart = () => {
     const { id } = useParams();
-    const {item,setItem} = useState([]);
 
-    useEffect(() => {
-        itemService.getOne(id)
-        .then(result => { setItem(result)
-        });
-    },[id]);
-
+    const {
+        brand,
+        model,
+        imageUrl
+    } =useContext(CartContext);
+    
+   
+    
     return(
         <>
         <h1>Cart Page</h1>
@@ -19,14 +22,14 @@ const Cart = () => {
                 <div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                 <div className="col mb-5">
         <div className="card h-100">
-            <img className="card-img-top" src='' alt="..." />
+            <img className="card-img-top" src={imageUrl} alt="..." />
             
             <div className="card-body p-4">
                 <div className="text-center">
                     
-                    <h5 className="fw-bolder"> </h5>
+                    <h5 className="fw-bolder">{brand}{model}</h5>
                     
-                    $
+                    ${}
                 </div>
             </div>
            

@@ -38,7 +38,7 @@ const UserItem = ({
                         <td><img src={imageUrl} style={{width: "100px"}}/></td>
 						<td>{brand} </td>
 						<td>{model}</td>
-						<td>{price}</td>
+						<td>${price}</td>
 						<td>{description}</td>
                      
 

@@ -5,6 +5,7 @@ import style from './ShopItemDetails.module.css'
 import * as commentService from '../service/commentService'
 import * as itemService from '../service/itemService'
 import authContext from "../context/authContext";
+import CartContext from "../context/cartContext";
 
 const ShopItemDetails = () =>{
    const { id } = useParams();
@@ -12,6 +13,7 @@ const ShopItemDetails = () =>{
    const [comments,setComments] = useState([]);
    const [items, setItems] = useState([]);
    const { email, username } = useContext(authContext);
+   const {addCart} =useContext(CartContext);
 
    
    useEffect(() => {
@@ -58,7 +60,7 @@ const ShopItemDetails = () =>{
                 {item.description}</p>
             <div className="d-flex">
                 <Link to={`/cart/${id}`}>
-                <button className="btn btn-outline-dark flex-shrink-0" type="button">
+                <button className="btn btn-outline-dark flex-shrink-0" onClick={addCart} type="button">
                     <i className="bi-cart-fill me-1"></i>
                     Add to cart
                 </button>

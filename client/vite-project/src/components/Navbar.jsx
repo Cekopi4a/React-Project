@@ -1,12 +1,16 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom' 
 import authContext from '../context/authContext';
+import CartContext from '../context/cartContext';
 
 const Navbar = () => {
    const {
     isAuthenticated,
     username,
+    email,
    } = useContext(authContext);
+
+   const {cartItem} =useContext(CartContext);
 
   return(
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -26,7 +30,7 @@ const Navbar = () => {
                         <li><Link className="dropdown-item" to="/myItem">My Item</Link></li>
                         </div>)}
                     </ul>
-                </li>
+                </li> 
                 <li className="nav-item"><Link className="nav-link" to="/admin">Admin</Link></li>
             </ul>
 
@@ -40,7 +44,7 @@ const Navbar = () => {
                 )}
 
             <span className="navbar-text">
-        {username}
+        {email}
       </span>
       
       {isAuthenticated && (
@@ -49,7 +53,7 @@ const Navbar = () => {
                 <button className="btn btn-outline-dark" type="submit">
                     <i className="bi-cart-fill me-1"></i>
                     Cart
-                    <span className="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                    <span className="badge bg-dark text-white ms-1 rounded-pill">{cartItem}</span>
                 </button>
                 </Link>
                  <div className="nav-item"><Link className="nav-link" to="/logout">Logout</Link></div>
