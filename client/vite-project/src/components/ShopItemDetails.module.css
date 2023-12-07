@@ -3,8 +3,20 @@
 }
 
 .label {
-    color: black;
-    background-color: red;
+    font-size: 30px;
+}
+
+.subBut {
+     font-size: 20px;
+     border-radius: 6px;
+     margin: 10px;
+     padding: 5px;
+}
+
+.subBut :hover {
+  text-decoration: white;
+  background-color: rgb(221, 221, 221);
+  transition-duration: 2s;
 }
 
 .textarea {
@@ -13,7 +25,7 @@
   padding: 12px 20px;
   box-sizing: border-box;
   border: 2px solid #ccc;
-  border-radius: 4px;
+  border-radius: 6px;
   background-color: #f8f8f8;
   font-size: 16px;
   resize: none;

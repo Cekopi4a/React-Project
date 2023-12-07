@@ -31,16 +31,9 @@ const createItemHandler = async (e) => {
 
 }
 
-const deleteItem = async (id) => {
-  const hasconfirm = confirm(`Are you sure you want to delete ${id.brand}`);
 
-	if(hasconfirm){
-		await itemService.deleteItem(id)
-	
-	    navigate('/shop');
-	}
 	  
-  }
+  
 
 
     return(
@@ -55,7 +48,7 @@ const deleteItem = async (id) => {
 					</div>
 					<div className="col-sm-6">
 						<a href="#addItemModal" className="btn btn-success" data-toggle="modal"><i className="material-icons">&#xE147;</i> <span>Add New Item</span></a>
-						<a href="" onClick={deleteItem} className="btn btn-danger" data-toggle="modal"><i className="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+						<a href="" className="btn btn-danger" data-toggle="modal"><i className="material-icons">&#xE15C;</i> <span>Delete</span></a>						
 					</div>
 				</div>
 			</div>
@@ -80,7 +73,6 @@ const deleteItem = async (id) => {
 				<UserItem
 				id={item._id}
 				key={item._id}
-				ondelete={deleteItem}
 				ownerId={item._ownerId}
 				brand={item.brand}
 				model={item.model}
@@ -110,7 +102,7 @@ const deleteItem = async (id) => {
 		<div className="modal-content">
 			<form onSubmit={createItemHandler}>
 				<div className="modal-header">						
-					<h4 className="modal-title">Add Employee</h4>
+					<h4 className="modal-title">Add Item</h4>
 					<button type="button" className="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div className="modal-body">	

@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 const UserItem = ({
 	id,
 	ownerId,
-	ondelete,
     brand,
     model,
     price,
@@ -18,9 +17,15 @@ const UserItem = ({
 		isAuthenticated
 	   } = useContext(authContext);
 
-	const onDeleteItem = () =>{
-		ondelete(id)
-	}
+	   const deleteItem = async (id) => {
+		const hasconfirm = confirm(`Are you sure you want to delete ${brand}`);
+	  
+		  if(hasconfirm){
+			  await itemService.deleteItem(id)
+		  
+			  navigate('/shop');
+		  }
+		}
 	
     return(
          <>
@@ -45,7 +50,7 @@ const UserItem = ({
 						<td>
 						<Link to={`/edit/${id}`} className="edit" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></Link>
 				            
-							<a href="" onClick={onDeleteItem} className="delete" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+							<a href="" onClick={deleteItem} className="delete" data-toggle="modal"><i className="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 						</td>
 					</tr>
 				</tbody>

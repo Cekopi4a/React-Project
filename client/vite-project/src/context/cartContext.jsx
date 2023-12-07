@@ -2,6 +2,7 @@ import { createContext } from "react";
 import { useState,useEffect } from "react";
 import * as itemService from '../service/itemService'
 import { useParams, } from "react-router-dom"; 
+import { addCart } from "../service/itemService";
 
 const CartContext = createContext();
 
@@ -14,32 +15,30 @@ export const AddCartContext = ({
     const [cart,setCart] = useState([]);
     const [cartItem,setCartItem] = useState(0);
 
-    useEffect(() => {
-        itemService.getAllCart()
-        .then(result => setCart(result));
-     },[]);
-
-    const addItem = (id) =>{
-    useEffect(() => {
-        itemService.addCart(id)
-        .then(result => setCart(result));
-     },[]);
-    }
 
     
-const addCart = (id) => {
+
+const addCart = () => {
+    
+
+    //const itemData = itemService.getOne(id).then(result => itemData);
+
+	//const result = await addCart(itemData);
+
+    //setCart(cart => [...cart,result]);
     setCartItem(cartItem + 1);
-    setCart(addItem(id));
+}
+
+const removeItem = () => {
+    setCartItem(cartItem - 1);
 }
 
 const values = {
     setCartItem,
     addCart,
+    removeItem,
+    cart,
     cartItem,
-    brand: cart.brand,
-    model: cart.model,
-    imageUrl: cart.imageUrl,
-
 }
 
     return(

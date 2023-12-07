@@ -8,11 +8,11 @@ import authContext from "../context/authContext";
 import CartContext from "../context/cartContext";
 
 const ShopItemDetails = () =>{
+    const { email } = useContext(authContext);
    const { id } = useParams();
    const [item,setItem] = useState([]);
    const [comments,setComments] = useState([]);
    const [items, setItems] = useState([]);
-   const { email, username } = useContext(authContext);
    const {addCart} =useContext(CartContext);
 
    
@@ -40,7 +40,7 @@ const ShopItemDetails = () =>{
         formData.get('comment') 
         );
 
-        setComments(state => [...state,{...newComment,author : { username }}]);
+        setComments(state => [...state, {...newComment, author: { email } }]);
         console.log(newComment);
    };
 
@@ -78,9 +78,9 @@ const ShopItemDetails = () =>{
 <div className="col">
     <h1>Comments:</h1>
     <ul>
-        {comments.map(({_id,owner: { username },text}) => (
-        <li key={_id}>
-            <div>{username}:{text}</div>
+        {comments.map(({id,text, owner:{ email }}) => (
+        <li key={id}>
+            <div>{email}:{text}</div>
         </li>
         ))}
     </ul>
@@ -89,10 +89,10 @@ const ShopItemDetails = () =>{
     )}
     </div>
     <div className="col">
-    <label className={style.label}>Add new comment:</label>
+    <h1 className={style.label}>Add new comment:</h1>
     <form onSubmit={addCommentHandler}>
         <textarea className={style.textarea} name="comment" placeholder="Comment...."></textarea>
-        <input className="" type="submit" value="Add Comment"/>
+        <input className={style.subBut} type="submit" value="Add Comment"/>
     </form>
     </div>
   </div>

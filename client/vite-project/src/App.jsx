@@ -28,7 +28,6 @@ function App() {
   return (
     
     <div>
-    <ErrorBoundary>
       <AuthProvider>
         <AddCartContext>
                <Navbar />
@@ -55,7 +54,6 @@ function App() {
 <Footer />
 </AddCartContext>
 </AuthProvider>
-</ErrorBoundary>
     </div>
   )
 }

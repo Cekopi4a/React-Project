@@ -5,7 +5,6 @@ import { Navigate, useNavigate } from 'react-router-dom';
 export default class ErrorBoundarys extends Component {
     constructor() {
         super()
-
         this.state = {
             hasError: false,
         }
@@ -23,7 +22,7 @@ export default class ErrorBoundarys extends Component {
 
     render() {
         if (this.state.hasError) {
-            return navigate('*')
+            return console.log("!!!!!!!Error!!!!!")
         }
 
         return this.props.children;

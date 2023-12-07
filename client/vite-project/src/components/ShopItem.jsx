@@ -1,4 +1,4 @@
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, useParams } from "react-router-dom";
 import { useContext } from 'react';
 import authContext from '../context/authContext';
 import CartContext from "../context/cartContext";
@@ -45,7 +45,7 @@ const ShopItem = ({
              <div className="btn-group" role="group" aria-label="Basic outlined example">
                 <button type="button" className="btn btn-outline-primary"><i className="bi bi-suit-heart-fill"></i></button>
                 <Link to={`/shop/item/${id}`}><button className="btn btn-outline-primary"><i className="bi bi-eye-fill"></i></button></Link>
-                <button type="button" onClick={addCart} className="btn btn-outline-primary"><i className="bi bi-cart-fill"></i></button>
+                <button type="button" onClick={() => addCart(`${id}`)} className="btn btn-outline-primary"><i className="bi bi-cart-fill"></i></button>
                </div>
                </div>
             </div>)}
