@@ -1,8 +1,10 @@
 import { createContext } from "react";
 import { useState,useEffect } from "react";
 import * as itemService from '../service/itemService'
-import { useParams, } from "react-router-dom"; 
-import { addCart } from "../service/itemService";
+import { useNavigate, useParams, } from "react-router-dom"; 
+import { useContext } from "react";
+import authContext from "./authContext";
+
 
 const CartContext = createContext();
 
@@ -11,26 +13,34 @@ CartContext.displayName = 'CartContext';
 export const AddCartContext = ({
     children,
 }) => {
-    const { id } = useParams();
     const [cart,setCart] = useState([]);
     const [cartItem,setCartItem] = useState(0);
+    const navigate = useNavigate();
 
 
-    
+const addCart = async (id,brand,model,price,imageUrl,addUserId) => {
 
-const addCart = () => {
-    
+    console.log(id,brand,model,price,imageUrl,addUserId);
 
-    //const itemData = itemService.getOne(id).then(result => itemData);
+    const items = await itemService.addCart({id,brand,model,price,imageUrl,addUserId});
 
-	//const result = await addCart(itemData);
+    setCart(state => [...state, {items,author: { }}]);
 
-    //setCart(cart => [...cart,result]);
+    console.log(items);
+
     setCartItem(cartItem + 1);
+    navigate("/cart")
 }
 
-const removeItem = () => {
+const removeItem = async (id) => {
+
+    const items = await itemService.deleteCartItem(id);
+
+    setCart(state => [...state, {items}]);
+    console.log(items);
+
     setCartItem(cartItem - 1);
+     navigate("/shop");
 }
 
 const values = {

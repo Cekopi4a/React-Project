@@ -1,7 +1,7 @@
 import * as itemService from '../service/itemService'
 import authContext from '../context/authContext';
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const UserItem = ({
 	id,
@@ -12,6 +12,7 @@ const UserItem = ({
     imageUrl,
     description,
 }) => {
+	const navigate = useNavigate();
 	const {
 		userId,
 		isAuthenticated
@@ -25,22 +26,16 @@ const UserItem = ({
 		  
 			  navigate('/shop');
 		  }
-		}
-	
+		};
     return(
          <>
 		 {userId === ownerId &&(
           <tbody>
 		 
 					<tr>
-						<td>
-							<span className="custom-checkbox">
-								<input type="checkbox" id="checkbox1" name="options[]" value="1" />
-								<label htmlFor="checkbox1"></label>
-							</span>
-						</td>
+						
                        
-                        <td><img src={imageUrl} style={{width: "100px"}}/></td>
+                        <td><img src={imageUrl} style={{width: "140px",height:"80px"}}/></td>
 						<td>{brand} </td>
 						<td>{model}</td>
 						<td>${price}</td>

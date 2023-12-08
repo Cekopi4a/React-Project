@@ -2,11 +2,13 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom' 
 import authContext from '../context/authContext';
 import CartContext from '../context/cartContext';
+import style from './Navbar.module.css'
 
 const Navbar = () => {
    const {
     isAuthenticated,
     username,
+    firstName,
     email,
    } = useContext(authContext);
 
@@ -31,7 +33,6 @@ const Navbar = () => {
                         </div>)}
                     </ul>
                 </li> 
-                <li className="nav-item"><Link className="nav-link" to="/admin">Admin</Link></li>
             </ul>
 
 
@@ -43,12 +44,13 @@ const Navbar = () => {
             </>
                 )}
 
-            <span className="navbar-text">
-        {email}
-      </span>
+            
       
       {isAuthenticated && (
         <>
+        <span className={style.name}>
+        Hello,{username || firstName}!
+      </span>
                 <Link to="/cart">
                 <button className="btn btn-outline-dark" type="submit">
                     <i className="bi-cart-fill me-1"></i>

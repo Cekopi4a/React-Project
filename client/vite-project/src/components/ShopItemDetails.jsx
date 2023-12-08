@@ -6,20 +6,23 @@ import * as commentService from '../service/commentService'
 import * as itemService from '../service/itemService'
 import authContext from "../context/authContext";
 import CartContext from "../context/cartContext";
+import ShopItem from "./ShopItem";
 
 const ShopItemDetails = () =>{
-    const { email } = useContext(authContext);
+    const { username,userId } = useContext(authContext);
    const { id } = useParams();
    const [item,setItem] = useState([]);
    const [comments,setComments] = useState([]);
-   const [items, setItems] = useState([]);
+   const [latItem, setLatItem] = useState([]);
    const {addCart} =useContext(CartContext);
+   const addUserId = userId;
+
 
    
    useEffect(() => {
-      itemService.getAll()
-      .then(result => setItems(result));
-   },[]);
+       itemService.getLatest()
+           .then(result => setLatItem(result));
+   }, [])
    
    useEffect(() => {
     itemService.getOne(id)
@@ -40,7 +43,7 @@ const ShopItemDetails = () =>{
         formData.get('comment') 
         );
 
-        setComments(state => [...state, {...newComment, author: { email } }]);
+        setComments(state => [...state, {...newComment, author: { username } }]);
         console.log(newComment);
    };
 
@@ -56,15 +59,15 @@ const ShopItemDetails = () =>{
             <div className="fs-5 mb-5">
                 <span className="text-decoration">${item.price}</span>
             </div>
-            <p className="lead"><p>Description:</p>
-                {item.description}</p>
+            <div className="lead"><div>Description:</div>
+                {item.description}</div>
             <div className="d-flex">
-                <Link to={`/cart/${id}`}>
-                <button className="btn btn-outline-dark flex-shrink-0" onClick={addCart} type="button">
+               
+                <button className="btn btn-outline-dark flex-shrink-0" onClick={() => addCart(id,item.brand,item.model,item.price,item.imageUrl,addUserId)} type="button">
                     <i className="bi-cart-fill me-1"></i>
                     Add to cart
                 </button>
-                </Link>
+                
             </div>
         </div>
     </div>
@@ -78,9 +81,9 @@ const ShopItemDetails = () =>{
 <div className="col">
     <h1>Comments:</h1>
     <ul>
-        {comments.map(({id,text, owner:{ email }}) => (
+        {comments.map(({id,text, owner:{ username }}) => (
         <li key={id}>
-            <div>{email}:{text}</div>
+            <div>{username}:{text}</div>
         </li>
         ))}
     </ul>
@@ -101,37 +104,13 @@ const ShopItemDetails = () =>{
 
 <section className="py-5 bg-light">
     <h2 className="fw-bolder mb-4">Related products</h2>
-        <div className="container px-4 px-lg-5 mt-5">
-                <div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                <div className="col mb-5">
-        <div className="card h-100">
-            <img className="card-img-top" src={items.imageUrl} alt="..." />
-            
-            <div className="card-body p-4">
-                <div className="text-center">
-                    
-                    <h5 className="fw-bolder">{items.brand} {items.model}</h5>
-                    
-                    ${items.price}
-                </div>
-            </div>
-           
-            <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <div className="container text-center">
-             <div className="btn-group" role="group" aria-label="Basic outlined example">
-                <button type="button" className="btn btn-outline-primary"><i className="bi bi-suit-heart-fill"></i></button>
-                <Link to={`/shop/item/${id}`}><button className="btn btn-outline-primary"><i className="bi bi-eye-fill"></i></button></Link>
-                <Link to={`/cart/${id}`}><button type="button" className="btn btn-outline-primary"><i className="bi bi-cart-fill"></i></button></Link>
-               </div>
-               </div>
-            </div>
-        </div>
+    <div className="container px-4 px-lg-5 mt-5">
+<div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+    {latItem.map(item => <ShopItem id={item._id} key={item.id}{...item} />)}
     </div>
-                    
-            
-                </div>
-        </div>
+    </div>
     </section>
+    
 </>
 );
 };

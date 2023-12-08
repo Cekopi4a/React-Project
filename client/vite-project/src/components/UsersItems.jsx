@@ -31,11 +31,6 @@ const createItemHandler = async (e) => {
 
 }
 
-
-	  
-  
-
-
     return(
   <>
   <div className="container-xl">
@@ -47,20 +42,14 @@ const createItemHandler = async (e) => {
 						<h2>Manage <b>Item</b></h2>
 					</div>
 					<div className="col-sm-6">
-						<a href="#addItemModal" className="btn btn-success" data-toggle="modal"><i className="material-icons">&#xE147;</i> <span>Add New Item</span></a>
-						<a href="" className="btn btn-danger" data-toggle="modal"><i className="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+						<a href="#addItemModal" className="btn btn-success" data-toggle="modal"><i className="material-icons">&#xE147;</i> <span>Add New Item</span></a>						
 					</div>
 				</div>
 			</div>
 			<table className="table table-striped table-hover">
 				<thead>
 					<tr>
-						<th>
-							<span className="custom-checkbox">
-								<input type="checkbox" id="selectAll" value={1}/>
-								<label htmlFor="selectAll"></label>
-							</span>
-						</th>
+						
 						<th>Pictute</th>
 						<th>Brand</th>
 						<th>Model</th>

@@ -12,7 +12,6 @@ export default function useItems() {
      return{
         id,
         items,
-        useEffect,
       }
 
 }

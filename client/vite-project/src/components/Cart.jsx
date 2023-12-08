@@ -1,18 +1,16 @@
 import { useParams,Link } from "react-router-dom"; 
 import { useContext } from "react";
 import { useState,useEffect } from "react";
-import CartContext from "../context/cartContext";
 import CartItem from '../components/CartItem'
 import * as itemService from '../service/itemService'
 
 const Cart = () => {
-    const {id}= useParams();
     const [itemCart,setItemCart] = useState([]);
    
     useEffect(() => {
-        itemService.getOne(id)
+        itemService.getAllCart()
         .then(result => setItemCart(result));
-     },[id]);
+     },[]);
     
     return(
         <>
@@ -21,8 +19,9 @@ const Cart = () => {
                 <div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
              {itemCart.map((item)=>(
              <CartItem 
+             addUserId={item.addUserId}
              key={item._id}
-             id={item._id}
+             id={item.id}
              brand={item.brand}
              model={item.model}
              price={item.price}
